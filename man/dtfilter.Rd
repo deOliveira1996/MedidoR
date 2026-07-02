@@ -6,6 +6,9 @@
 \usage{
 dtfilter(x)
 }
+\arguments{
+\item{x}{Dataframe to filter.}
+}
 \description{
-dtfilter
+Function to filter the data for the data.table output
 }

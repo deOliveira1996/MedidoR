@@ -31,11 +31,13 @@ Imports:
     dplyr,
     tidyr,
     tidyverse,
-    ggplot2,
-    lattice,
-    Hmisc
+    ggplot2
 RoxygenNote: 7.3.3
+VignetteBuilder: knitr
 Suggests: 
-    shinytest2,
-    testthat (>= 3.0.0)
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0),
+    shinytest2
 Config/testthat/edition: 3
+Roxygen: list(markdown = TRUE)

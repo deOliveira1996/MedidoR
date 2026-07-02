@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils-pipe.R
 \name{get_file_paths}
 \alias{get_file_paths}
-\title{Generate the file paths for data}
+\title{get_file_paths}
 \usage{
 get_file_paths(dir_path, segments)
 }

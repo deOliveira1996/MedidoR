@@ -1,10 +1,10 @@
 library(shinytest2)
 
 test_that("{shinytest2} recording: calib_gui_test", {
-  local_app_support(test_path("../../inst/shiny-apps/Calib"))
-  app <- AppDriver$new(test_path("../../inst/shiny-apps/Calib"), name = "calib_gui_test",
+  app_dir <- system.file("shiny-apps", "Calib", package = "MedidoR")
+  local_app_support(app_dir)
+  app <- AppDriver$new(app_dir, name = "calib_gui_test",
                        seed = 123, height = 911, width = 1619)
-
 
   app$click("path")
   app$wait_for_idle()

@@ -2,11 +2,11 @@
 % Please edit documentation in R/utils-pipe.R
 \name{show_measurement_modal}
 \alias{show_measurement_modal}
-\title{Generate modal dialog}
+\title{show_measurement_modal}
 \usage{
 show_measurement_modal(message)
 }
 \description{
-Generate modal dialog
+Is a helper functions to generate modal dialog
 }
 \keyword{internal}

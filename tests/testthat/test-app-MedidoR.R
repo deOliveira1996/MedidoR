@@ -1,8 +1,9 @@
 library(shinytest2)
 
 test_that("{shinytest2} recording: medidor_gui_test", {
-  local_app_support(test_path("../../inst/shiny-apps/MedidoR"))
-  app <- AppDriver$new(test_path("../../inst/shiny-apps/MedidoR"), name = "medidor_gui_test",
+  app_dir <- system.file("shiny-apps", "MedidoR", package = "MedidoR")
+  local_app_support(app_dir)
+  app <- AppDriver$new(app_dir, name = "medidor_gui_test",
                        seed = 321, height = 911, width = 1619)
 
   app$click("path")

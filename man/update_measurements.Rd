@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils-pipe.R
 \name{update_measurements}
 \alias{update_measurements}
-\title{Update the data with calibration model estimates}
+\title{update_measurements}
 \usage{
 update_measurements(
   main_path,

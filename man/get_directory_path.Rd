@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils-pipe.R
 \name{get_directory_path}
 \alias{get_directory_path}
-\title{Get the directory paths}
+\title{get_directory_path}
 \usage{
 get_directory_path(segments, user_dir)
 }

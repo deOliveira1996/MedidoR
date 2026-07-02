@@ -46,14 +46,12 @@
     "mTable_rows_all": [
       1,
       2,
-      3,
-      4
+      3
     ],
     "mTable_rows_current": [
       1,
       2,
-      3,
-      4
+      3
     ],
     "mTable_rows_selected": null,
     "mTable_search": "",
@@ -355,9 +353,7 @@
                 13,
                 14,
                 15,
-                18,
-                19,
-                20
+                18
               ]
             },
             {
