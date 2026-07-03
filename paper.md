@@ -20,13 +20,13 @@ bibliography: paper.bib
 
 # Summary
 
-Estimating morphometric measurements plays a crucial role in understanding animal biology, ecology, and behavior. Over the last decade, drone-based photogrammetry has enabled non-invasive, systematic, and long-term data collection, allowing researchers to estimate the body size and physical condition of wild marine megafauna [@Burnett:2019; @deOliveira:2023a]. Aerial photogrammetry relies on calculating a Ground Sample Distance (GSD) to convert image pixels into metric units. While a drone's onboard barometer can provide altitude estimates to calculate GSD, these are often biased by environmental conditions and take-off height. `MedidoR` is an open-source R package with Shiny applications designed to optimize drone-based photogrammetry analyses by utilizing scale calibration models. `MedidoR` allows for independent calibration flights to build robust statistical models that correct altitude biases, increasing measurement accuracy without limiting field sampling opportunities or requiring hardware additions.
+Estimating morphometric measurements plays a crucial role in understanding animal biology, ecology, and behavior. Over the last decade, drone-based photogrammetry has enabled non-invasive, systematic, and long-term data collection, allowing researchers to estimate the body size and physical condition of wild marine megafauna [@Burnett:2019; @deOliveira:2023a; @deOliveira:2023b]. Aerial photogrammetry relies on calculating a Ground Sample Distance (GSD) to convert image pixels into metric units. While a drone's onboard barometer can provide altitude estimates to calculate GSD, these are often biased by environmental conditions and take-off height. `MedidoR` is an open-source R package with Shiny applications designed to optimize drone-based photogrammetry analyses by utilizing scale calibration models. `MedidoR` allows for independent calibration flights to build robust statistical models that correct altitude biases, increasing measurement accuracy without limiting field sampling opportunities or requiring hardware additions.
 
 # Statement of Need
 
 Accurate size and body condition estimation is a fundamental requirement for assessing population health and individual energetic status across various marine megafauna. The rapid advancement of Unoccupied Aircraft Systems (UAS, or drones) has facilitated non-invasive monitoring and photogrammetry for a wide range of surface-associated species, including dugongs, pinnipeds, sharks, rays, and marine turtles [@Hodgson:2020; @Dujon:2021]. Precise metric measurements require highly accurate altitude data to properly scale imagery. While laser altimeters have been developed to overcome the inaccuracies of onboard barometers [@Dawson:2017], they add significant cost, hardware complexity, and weight to the aircraft.
 
-A proven, cost-effective alternative to hardware modifications is the use of scale calibration models derived from flights over objects of known dimensions [@Burnett:2019; @deOliveira:2023a]. Despite the establishment of this calibration methodology, the current software ecosystem for marine photogrammetry lacks integrated tools to streamline this specific workflow. General image processing programs like ImageJ [@Schneider:2012] require manual data transcription and lack automated body segmentation. Dedicated photogrammetry tools such as MorphoMetriX [@Torres:2020] and AragoJ [@Aleixo:2020] are highly effective for pixel extraction but rely on direct metadata input or in-frame scaling, leaving the integration of calibration models to post-processing software like CollatriX [@Bird:2020] or custom scripts.
+A proven, cost-effective alternative to hardware modifications is the use of scale calibration models derived from flights over objects of known dimensions [@Burnett:2019; @deOliveira:2023a; @deOliveira:2023b]. Despite the establishment of this calibration methodology, the current software ecosystem for marine photogrammetry lacks integrated tools to streamline this specific workflow. General image processing programs like ImageJ [@Schneider:2012] require manual data transcription and lack automated body segmentation. Dedicated photogrammetry tools such as MorphoMetriX [@Torres:2020] and AragoJ [@Aleixo:2020] are highly effective for pixel extraction but rely on direct metadata input or in-frame scaling, leaving the integration of calibration models to post-processing software like CollatriX [@Bird:2020] or custom scripts.
 
 `MedidoR` fills this software gap by offering a user-friendly graphical interface (GUI) that combines the generation of statistical calibration models with specialized routines for proportional body segmentation. It makes advanced, statistically-validated photogrammetry accessible to biologists without requiring extensive coding expertise, standardizing workflows for marine megafauna species where metric measurements are required.
 
@@ -43,3 +43,23 @@ The `MedidoR` package is structured into two interconnected modules built on the
 I acknowledge the Projeto Toninhas do Brasil, and the Grupo de Estudos de Mamíferos Aquáticos do Rio Grande do Sul (GEMARS) for providing the imagery data used to validate the software. Special thanks to Matheus Lima de Oliveira for assistance with the graphic parameters of the interface. Thanks to Alexandre Machado for his help in optimizing and testing the application. And thanks to Denis Hille for his great help during the functional testing.
 
 # References
+
+1.  Aleixo, F., O'Callaghan, S. A., Ducla Soares, L., Nunes, P., & Prieto, R. (2020). AragoJ: A free, open-source software to aid single camera photogrammetry studies. Methods in Ecology and Evolution, 11(5), 670–677.
+
+2.  Bird, C. N., & Bierlich, K. C. (2020). CollatriX: A GUI to collate MorphoMetriX outputs. Journal of Open Source Software, 5(51), 2328.
+
+3.  Burnett, J. D., Lemos, L., Barlow, D., Wing, M. G., Chandler, T., & Torres, L. G. (2019). Estimating morphometric attributes of baleen whales with photogrammetry from small UASs: A case study with blue and gray whales. Marine Mammal Science, 35(1), 108–139.
+
+4.  Dawson, S. M., Bowman, M. H., Leunissen, E., & Sirguey, P. (2017). Inexpensive aerial photogrammetry for studies of whales and large marine animals. Frontiers in Marine Science, 4, 366.
+
+5.  de Oliveira, L. L., Andriolo, A., Cremer, M. J., & Zerbini, A. N. (2023a). Aerial photogrammetry techniques using drones to estimate morphometric measurements and body condition in South American small cetaceans. Marine Mammal Science.
+
+6.  de Oliveira, L. L., Fettermann, T., Marcançoli, R. K. M., & Danilewicz, D. (2023b). Drone survey provides preliminary insights into the biological aspects of Bryde’s whales in southeastern Brazil. Latin American Journal of Aquatic Mammals, 18(2), 224–230. <https://doi.org/10.5597/lajam00314>
+
+7.  Dujon, A. M., Ierodiaconou, D., Geeson, J. J., Arnould, J. P. Y., Allan, B. M., Katselidis, K. A., & Schofield, G. (2021). Machine learning to detect marine animals in UAV imagery: effect of morphology, spacing, behaviour and habitat. Remote Sensing in Ecology and Conservation, 7(3), 341–354.
+
+8.  Hodgson, A. J., Kelly, N., & Peel, D. (2020). Unmanned aerial vehicles for surveying marine fauna: assessing detection probability. Ecological Applications, 30(2), e02065.
+
+9.  Schneider, C. A., Rasband, W. S., & Eliceiri, K. W. (2012). NIH Image to ImageJ: 25 years of image analysis. Nature Methods, 9(7), 671–675.
+
+10. Torres, W., & Bierlich, K. (2020). MorphoMetriX: a photogrammetric measurement GUI for morphometric analysis of megafauna. Journal of Open Source Software, 5(45), 1825.

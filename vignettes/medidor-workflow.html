@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>Step-by-Step Aerial Photogrammetry Workflow with MedidoR</title>
+
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Step-by-Step Aerial Photogrammetry Workflow
+with MedidoR</h1>
+
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(MedidoR)</span></code></pre></div>
+<p>This vignette guides you through the standardized workflow of MedidoR
+for estimating the body length and condition of marine animals using
+aerial images captured by commercial drones.</p>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>Drone-based photogrammetry converts pixel distances from digital
+imagery into real-world metric units using the Ground Sample Distance
+(GSD). Because onboard barometers suffer from environmental drift,
+MedidoR utilizes an independent calibration routine to build a linear
+regression model that maps flight altitude to true GSD values.</p>
+</div>
+<div id="phase-1-building-the-scale-calibration-model" class="section level1">
+<h1>Phase 1: Building the Scale Calibration Model</h1>
+<p>Before extracting measurements from target animals, you must process
+the reference calibration dataset.</p>
+<div id="step-1.1-initialize-the-calibration-environment" class="section level2">
+<h2>Step 1.1: Initialize the Calibration Environment</h2>
+<p>Launch the scale application:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">calib_GUI</span>()</span></code></pre></div>
+<p>Click Change Working Directory and navigate to your desired analysis
+folder.</p>
+<p>Click CREATE to initialize a clean calib.xlsx database structure.</p>
+</div>
+<div id="step-1.2-import-and-measure-reference-images-click-browse-and-upload-your-reference-object-file-e.g.-a-known-2-meter-calibration-frame-file-like-molde_15m_1.png." class="section level2">
+<h2>Step 1.2: Import and Measure Reference Images Click Browse and
+upload your reference object file (e.g., a known 2-meter calibration
+frame file like Molde_15M_1.png).</h2>
+<p>Input the known metric values in Scale length (m) (e.g., 2).</p>
+<p>Fill out the camera parameters (Camera sensor width, Camera focal
+length, and Flight Altitude).</p>
+<p>Use the cursor to draw a bounding box around the object and click
+Crop.</p>
+<p>Click on both ends of the reference object on the cropped image
+plot.</p>
+<p>Click ADD-IN to append this measurement to the database. Repeat this
+for images captured at various heights (e.g., 10m, 15m, 20m, 25m).</p>
+</div>
+<div id="phase-2-morphometric-extraction-of-target-megafauna-once-your-calibration-database-is-populated-you-are-ready-to-process-animal-footage.-launch-the-primary-measurement-application" class="section level2">
+<h2>Phase 2: Morphometric Extraction of Target Megafauna Once your
+calibration database is populated, you are ready to process animal
+footage. Launch the primary measurement application:</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">medidor_GUI</span>()</span></code></pre></div>
+<p>Set your working directory to the folder containing your target
+images.</p>
+<p>Click IMPORT to load your database.</p>
+<p>From here, MedidoR offers two distinct measurement paths depending on
+your research objectives: Morphometrics Mode (for automated
+segmentation) and Free Measurement Mode (for specific anatomical
+features).</p>
+</div>
+<div id="phase-2a-proportional-morphometrics-mode-ideal-for-estimating-the-total-length-and-extracting-body-condition-indices-via-segmented-widths." class="section level2">
+<h2>Phase 2A: Proportional Morphometrics Mode Ideal for estimating the
+total length and extracting body condition indices via segmented
+widths.</h2>
+<p>Select Morphometrics Mode and set your target intervals (e.g., 10%
+segments).</p>
+<p>Upload your target animal image and fill out the associated flight
+parameters in the sidebar.</p>
+<p>Draw a selection box over the animal’s body and click Crop.</p>
+<p>Trace the Centerline: Click 3 consecutive times along the animal’s
+spine (Tip of the rostrum, Mid-body, and Fluke notch).</p>
+<p>Trace Width Segments: The application will automatically draw
+perpendicular blue lines across the body at the chosen increments. Click
+on the left and right body margins where the blue lines intersect the
+skin boundaries.</p>
+<p>Trace Fluke Width: Finally, click on both outer tips of the tail
+fluke.</p>
+<p>Click Save to append the data.</p>
+</div>
+<div id="phase-2b-free-measurement-mode-ideal-for-extracting-linear-distances-of-specific-customized-anatomical-traits-such-as-rostrum-to-blowhole-distance-dorsal-fin-base-or-scar-lengths." class="section level2">
+<h2>Phase 2B: Free Measurement Mode Ideal for extracting linear
+distances of specific, customized anatomical traits, such as
+rostrum-to-blowhole distance, dorsal fin base, or scar lengths.</h2>
+</div>
+</div>
+<div id="select-free-mode." class="section level1">
+<h1>Select Free Mode.</h1>
+<p>Upload your target animal image, fill out the flight parameters, draw
+a bounding box, and click Crop.</p>
+<p>Initialize the tool: Click the New Measurement button to unlock the
+free-mode module.</p>
+<p>Define the feature: Click Start Measurement. A text field will appear
+prompting you to name the feature you are about to measure. Type a
+custom identifier (e.g., TIP-ROSTRUM, SCAR-1, or MID-GIRTH) and click
+Start Measurement again to confirm.</p>
+<p>Measure: Click exactly two points on the cropped image. A red line
+will connect them, establishing the linear distance in pixels.</p>
+<p>Save the feature: Click Save to record this specific measurement into
+the database.</p>
+<p>Iterate or Conclude: If you need to measure another feature on the
+same animal, click Continue. The system will prompt you for a new
+identifier (e.g., FLUKE-WIDTH). Repeat the two clicks and save. Once all
+desired features for the current animal have been captured, click Finish
+to conclude the session and reset the canvas for the next image.</p>
+<div id="phase-3-model-calibration-and-data-export-navigate-to-the-calibration-tab-within-the-ui." class="section level2">
+<h2>Phase 3: Model Calibration and Data Export Navigate to the
+Calibration Tab within the UI.</h2>
+<p>Click Browse Calibration File and select the calib.xlsx spreadsheet
+you generated in Phase 1.</p>
+<p>Click Run Model Calibration.</p>
+<p>Evaluate the Diagnostic and Accuracy Plots (R², RMSE). MedidoR will
+automatically fit the linear regression model, calculate the Corrected
+GSD, and update your animal datasets, transforming all pixel values into
+standardized metric outputs.</p>
+<p>Navigate to the Dataframe Tab to inspect the final metric results and
+verify your standardized dataset.</p>
+</div>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -137,164 +137,78 @@ ui <- shiny::fluidPage(
         type = "tabs",
         shiny::tabPanel(
           "Instructions",
-          shiny::h1("MedidoR User Guide", style = "color: #0047AB;"),  # Black
+          shiny::div(style = "padding: 10px 20px;",
 
-          # Introduction Section
-          shiny::div(
-            style = "background-color: #0047AB; padding: 15px; border-radius: 5px; margin-bottom: 20px;",  # Darkgrey
-            shiny::h2("Introduction", style = "color: #0047AB;"),  # Blue
-            shiny::p(
-              shiny::strong(shiny::em("MedidoR")),
-              "is an interactive photogrammetry tool for marine megafauna research that enables:"
-            ),
-            shiny::tags$ul(
-              shiny::tags$li("Precise morphometric measurements from drone imagery"),
-              shiny::tags$li("Pixel-to-real-world conversion through calibration"),
-              shiny::tags$li("Standardized data collection and quality control")
-            )
-          ),
-          # Workflow Overview
-          shiny::div(
-            style = "border-left: 4px solid #0066cc; padding-left: 15px; margin-bottom: 20px; background-color: #696969;",  # Darkgrey
-            shiny::h2("Workflow Overview", style = "color: #0047AB;"),  # Blue
-            shiny::h3("1. Initial Setup", style = "color: #000000;"),  # Black
-            shiny::tags$ul(
-              shiny::tags$li("Set working directory via the interface"),
-              shiny::tags$li("Choose segment interval (5% or 10% density)")
-            ),
+                     # Main Header
+                     shiny::div(
+                       style = "background-color: #e2e6ea; padding: 20px 25px; border-radius: 8px; margin-bottom: 30px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);",
+                       shiny::h2("MedidoR: Photogrammetry Workflow Guide",
+                                 style = "color: #0047AB; font-weight: bold; margin-top: 0; margin-bottom: 8px;"),
+                       shiny::p("Standardized protocol for extracting morphometric measurements and biological condition indices from aerial drone imagery.",
+                                style = "color: #333333; font-size: 1.1em; margin-bottom: 0;")
+                     ),
 
-            shiny::h3("2. Data Management", style = "color: #000000;"),  # Black
-            shiny::tags$ul(
-              shiny::tags$li(shiny::strong("First-time users:"), "Create new measurement templates"),
-              shiny::tags$li(shiny::strong("Returning users:"), "Import existing datasets"),
-              shiny::tags$li("Data stored in standardized Excel formats")
-            ),
+                     # STEP 1: Setup
+                     shiny::div(
+                       style = "background-color: #f0f3f5; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); padding: 20px; border-left: 6px solid #0047AB; margin-bottom: 25px;",
+                       shiny::h3(shiny::icon("folder-open"), " 1. Initialization & Data Management", style = "color: #333333; margin-top: 0;"),
+                       shiny::tags$ul(style = "color: #444444; font-size: 1.05em; line-height: 1.6;",
+                                      shiny::tags$li(shiny::strong("Set Working Directory:"), " Define the local folder containing your drone imagery."),
+                                      shiny::tags$li(shiny::strong("Select Mode:"), " Choose between ", shiny::em("Morphometrics"), " (proportional body segmentation) or ", shiny::em("Free Measurements"), " (custom anatomical traits)."),
+                                      shiny::tags$li(shiny::strong("Database Setup:"), " Click ", shiny::strong("CREATE"), " to initialize a new dataset, or ", shiny::strong("IMPORT"), " to load an existing analytical spreadsheet.")
+                       )
+                     ),
 
-            shiny::h3("3. Image Processing", style = "color: #000000;"),  # Black
-            shiny::tags$ul(
-              shiny::tags$li("Load drone images (JPG/PNG)"),
-              shiny::tags$li("Interactive crop tool for ROI selection")
-            )
-          ),
+                     # STEP 2: Image & Metadata
+                     shiny::div(
+                       style = "background-color: #f0f3f5; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); padding: 20px; border-left: 6px solid #0047AB; margin-bottom: 25px;",
+                       shiny::h3(shiny::icon("image"), " 2. Image Processing & Metadata", style = "color: #333333; margin-top: 0;"),
+                       shiny::tags$ul(style = "color: #444444; font-size: 1.05em; line-height: 1.6;",
+                                      shiny::tags$li(shiny::strong("Upload Target:"), " Import your high-resolution aerial image (JPG/PNG/TIFF)."),
+                                      shiny::tags$li(shiny::strong("Flight Parameters:"), " Strictly fill all required metadata (Flight Altitude, Camera Sensor Width, Focal Length, and Species). "),
+                                      shiny::tags$li(shiny::strong("Region of Interest:"), " Draw a bounding box around the target animal and click ", shiny::strong("CROP"), " to optimize the rendering canvas.")
+                       )
+                     ),
 
-          # Measurement Section
-          shiny::div(
-            style = "background-color: #696969; padding: 15px; border-radius: 5px; margin-bottom: 20px;",  # Darkgrey
-            shiny::h2("Measurement Protocol", style = "color: #0047AB;"),  # Blue
+                     # STEP 3: Measurement Protocol
+                     shiny::div(
+                       style = "background-color: #f0f3f5; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); padding: 20px; border-left: 6px solid #0047AB; margin-bottom: 25px;",
+                       shiny::h3(shiny::icon("ruler-combined"), " 3. Measurement Protocols", style = "color: #333333; margin-top: 0;"),
 
-            shiny::h3("Length Measurement", style = "color: #000000;"),  # Black
-            shiny::tags$ol(
-              shiny::tags$li("Click 3 points along body axis (rostrum to caudal notch)"),
-              shiny::tags$li("Automatic generation of:",
-                             shiny::tags$ul(
-                               shiny::tags$li("Main measurement line (red)"),
-                               shiny::tags$li("Perpendicular guides (blue dashed)")
-                             )
-              )
-            ),
+                       shiny::h4("Path A: Proportional Morphometrics", style = "color: #0047AB; margin-top: 15px;"),
+                       shiny::tags$ol(style = "color: #444444; font-size: 1.05em; line-height: 1.6;",
+                                      shiny::tags$li(shiny::strong("Trace Centerline:"), " Click 3 consecutive times along the body axis (1: Tip of rostrum, 2: Mid-body, 3: Fluke notch)."),
+                                      shiny::tags$li(shiny::strong("Width Segments:"), " Click on the body boundaries where the perpendicular dashed guides intersect the animal's margins."),
+                                      shiny::tags$li(shiny::strong("Fluke Width:"), " Complete the extraction by clicking on both outer tips of the tail fluke.")
+                       ),
 
-            shiny::h3("Width Measurement", style = "color: #000000;"),  # Black
-            shiny::tags$ul(
-              shiny::tags$li(shiny::strong("10% intervals:"), "18 width points (9 segments)"),
-              shiny::tags$li(shiny::strong("5% intervals:"), "38 width points (19 segments)"),
-              shiny::tags$li("Click point pairs on each perpendicular line")
-            ),
+                       shiny::h4("Path B: Free Measurements", style = "color: #0047AB; margin-top: 15px;"),
+                       shiny::tags$ol(style = "color: #444444; font-size: 1.05em; line-height: 1.6;",
+                                      shiny::tags$li(shiny::strong("Initialize:"), " Click ", shiny::strong("New Measurement"), " and assign a biological ID (e.g., 'Dorsal-Fin', 'Scar-Length')."),
+                                      shiny::tags$li(shiny::strong("Extract:"), " Click exactly two points on the image to compute the linear distance in pixels."),
+                                      shiny::tags$li(shiny::strong("Iterate:"), " Save the trait and click ", shiny::strong("Continue"), " for additional features, or ", shiny::strong("Finish"), " to conclude.")
+                       )
+                     ),
 
-            shiny::h3("Fluke Measurement", style = "color: #000000;"),  # Black
-            shiny::tags$ul(
-              shiny::tags$li("Final 2 clicks to measure tail fluke width"),
-              shiny::tags$li("Highlighted in purple with special marker")
-            ),
+                     # STEP 4: Calibration
+                     shiny::div(
+                       style = "background-color: #f0f3f5; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); padding: 20px; border-left: 6px solid #0047AB; margin-bottom: 25px;",
+                       shiny::h3(shiny::icon("chart-line"), " 4. Scale Calibration & Export", style = "color: #333333; margin-top: 0;"),
+                       shiny::tags$ul(style = "color: #444444; font-size: 1.05em; line-height: 1.6;",
+                                      shiny::tags$li(shiny::strong("Integrate Model:"), " Navigate to the ", shiny::strong("Calibration"), " tab and provide the ", shiny::em("calib.xlsx"), " spreadsheet generated by the MedidoR Scale module."),
+                                      shiny::tags$li(shiny::strong("Run Validation:"), " Click ", shiny::strong("RUN Calibration"), " to fit the linear regression model correcting altitude biases."),
+                                      shiny::tags$li(shiny::strong("Evaluate Accuracy:"), " Inspect the generated diagnostic plots (Homogeneity, Residuals) and statistical metrics (RMSE, R²)."),
+                                      shiny::tags$li(shiny::strong("Final Export:"), " Transformed metric estimates (meters) are automatically saved to your dataset, ready for analysis in the ", shiny::strong("Dataframe"), " tab.")
+                       )
+                     ),
 
-            shiny::div(
-              style = "background-color: #ff9933; padding: 10px; border-radius: 5px; margin-top: 10px;",  # Orange
-              shiny::h4("Pro Tips:", style = "color: #000000;"),  # Black text on orange
-              shiny::tags$ul(
-                shiny::tags$li("Use high-contrast images for better point selection"),
-                shiny::tags$li("Zoom in for precise fluke width measurement"),
-                shiny::tags$li("Save frequently with", shiny::strong("Add-IN"))
-              )
-            )
-          ),
-
-          # Data & Calibration Section
-          shiny::div(
-            style = "border-top: 2px solid #0066cc; padding-top: 15px; background-color: #696969;",  # Darkgrey
-            shiny::h2("Data Management & Calibration", style = "color: #0047AB;"),  # Blue
-
-            shiny::h3("Metadata Entry", style = "color: #000000;"),  # Black
-            shiny::tags$ul(
-              shiny::tags$li("Complete all fields in", shiny::em("Image Parameters")),
-              shiny::tags$li("Essential fields:",
-                             shiny::tags$ul(
-                               shiny::tags$li("Species identification"),
-                               shiny::tags$li("Flight altitude (m)"),
-                               shiny::tags$li("Frame quality score (Good/Moderate/Bad)")
-                             )
-              )
-            ),
-
-            shiny::h3("Calibration Process", style = "color: #000000;"),  # Black
-            shiny::tags$ol(
-              shiny::tags$li("Prepare", shiny::strong("calib.xlsx"), "with:"),
-              shiny::tags$ul(
-                shiny::tags$li("Reference object measurements (pixels)"),
-                shiny::tags$li("Actual lengths (meters)"),
-                shiny::tags$li("Flight altitude data"),
-                shiny::tags$li("Laser altitude data")
-              ),
-              shiny::tags$li("Upload in", shiny::strong("Calibration"), "tab"),
-              shiny::tags$li("Review diagnostic plots for model validation")
-            ),
-
-            shiny::div(
-              style = "background-color: #48494B; padding: 10px; border-radius: 5px; margin: 10px 0;",  # Dimgrey (darker)
-              shiny::h4("File Structure:", style = "color: #000000;"),  # Black
-              shiny::tags$ul(
-                shiny::tags$li(shiny::strong("Measurements.xlsx:"), "Raw collected data"),
-                shiny::tags$li(shiny::strong("Measurements_1.xlsx:"), "Model-adjusted values"),
-                shiny::tags$li("Use *_1.xlsx for final analysis")
-              )
-            )
-          ),
-
-          # Visualization Section
-          shiny::div(
-            style = "margin-top: 20px; background-color: #696969; padding: 15px; border-radius: 5px;",  # Darkgrey
-            shiny::h2("Results Visualization", style = "color: #0047AB;"),  # Blue
-
-            shiny::h3("Measurement Explorer", style = "color: #000000;"),  # Black
-            shiny::tags$ul(
-              shiny::tags$li("View/compare individuals in", shiny::strong("Measured whale")),
-              shiny::tags$li("Adjust sample size with", shiny::em("Number of whales"))
-            ),
-
-            shiny::h3("Data Tables", style = "color: #000000;"),  # Black
-            shiny::tags$ul(
-              shiny::tags$li("Full dataset available in", shiny::strong("Dataframe"), "tab"),
-              shiny::tags$li("Search and filter capabilities")
-            )
-          ),
-          # Footer
-          shiny::div(
-            style = "text-align: center; margin-top: 30px; padding: 10px; background-color: #696969;",  # Darkgrey
-            shiny::p(
-              style = "font-size: 1.1em; color: #000000;",  # Black
-              "Now that you're familiar with",
-              shiny::strong(shiny::em("MedidoR")),
-              ", start exploring!"
-            ),
-            shiny::p(
-              style = "font-size: 0.9em; color: #000000;",  # Black
-              "For advanced usage, refer to the package documentation"
-            )
-          ),
-          shiny::h3("Free Measurement Mode", style = "color: #000000;"),
-          shiny::tags$ul(
-            shiny::tags$li("Toggle the switch to 'Free Measurements' in the sidebar."),
-            shiny::tags$li("Click 'New Measurement' to define an ID/Name for your specific target."),
-            shiny::tags$li("Click two points on the image to measure the defined segment."),
-            shiny::tags$li("Hit 'ADD IN' to save the coordinate distance to the spreadsheet.")
+                     # Methodological Note
+                     shiny::div(
+                       style = "background-color: #e6f0ff; border-radius: 5px; padding: 15px; margin-top: 10px; border: 1px solid #cce0ff;",
+                       shiny::h4(shiny::icon("info-circle"), " Methodological Note", style = "color: #0047AB; margin-top: 0;"),
+                       shiny::p("Ensure maximum contrast during pixel selection. All extracted measurements remain in pixel units until the dynamic Ground Sample Distance (cGSD) calibration is executed in Step 4.",
+                                style = "color: #333333; font-size: 0.95em; margin-bottom: 0;")
+                     )
           )
         ),
         shiny::tabPanel(
