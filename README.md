@@ -176,4 +176,4 @@ For questions or support, please contact:
 
 Lucas de Oliveira - [oceano2014lucas\@gmail.com](mailto:oceano2014lucas@gmail.com)
 
-GitHub issues: <https://github.com/deOliveira1996/MeDiDOR/issues>
+GitHub issues: <https://github.com/deOliveira1996/MedidoR/issues>
