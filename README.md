@@ -20,14 +20,14 @@ You can install the development version of MedidoR from GitHub:
 if (!require("devtools")) install.packages("devtools")
 
 # Install MedidoR
-devtools::install_github("deOliveira1996/MeDiDOR")
+devtools::install_github("deOliveira1996/MedidoR")
 
 OR
 
 if (!require("pak")) install.packages("pak")
 
 # Install MedidoR
-pak::pak("deOliveira1996/MeDiDOR")
+pak::pak("deOliveira1996/MedidoR")
 ```
 
 ## Usage
