@@ -60,10 +60,10 @@ test_that("{shinytest2} recording: calib_gui_test", {
   app$set_inputs(plot_click = list(x = 2054.38, y = 1206.52), allow_no_input_binding_ = TRUE, priority_ = "event")
   app$set_inputs(plot_click = list(x = 2369.4, y = 1202.8), allow_no_input_binding_ = TRUE, priority_ = "event")
 
-  app$expect_values()
-
   app$click("saveBtn")
   app$wait_for_idle()
+
+  app$expect_values()
 
   app$click("clearBtn")
 

@@ -13,6 +13,7 @@
     "closeBtn": 0,
     "comments": "",
     "confirmBtn": 1,
+    "continue_free": 0,
     "create": 1,
     "crop": 1,
     "drone": "MA2",
@@ -30,6 +31,7 @@
         "0.png"
       ]
     },
+    "finish_free": 0,
     "flen": "7.6",
     "free_measure_id": "TIP-ROSTRUM",
     "import": 1,
@@ -41,7 +43,7 @@
     "path": 1,
     "plot_brush": null,
     "plot_click": null,
-    "saveBtn": 0,
+    "saveBtn": 1,
     "save_plot": "Y",
     "score": "1",
     "segments": "2",

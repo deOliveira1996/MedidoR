@@ -34,14 +34,14 @@
     "path": 1,
     "plot_brush": null,
     "plot_click": null,
-    "saveBtn": 0,
+    "saveBtn": 1,
     "sw": "13.2",
     "takeof": 1.5,
     "wd": "G:/Meu Drive/Drive_Work/_Lucas Oliveira/REPOS/MeDiDOR/inst/extdata/calib_test"
   },
   "output": {
     "add_status": {
-      "html": "<div class=\"alert alert-info\">Step 2: After completing the measurements, click on 'Add-IN button' to save<\/div>",
+      "html": "<div class=\"alert alert-success\">The scale measurements have been saved!<\/div>",
       "deps": [
 
       ]
