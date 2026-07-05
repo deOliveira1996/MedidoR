@@ -8,9 +8,9 @@ Authors@R: c(person(given = "Lucas",
            email = "oceano2014lucas@gmail.com",
            comment = c(ORCID = "0000-0002-6814-6052"))
            )
-Maintainer: Lucas de Oliveira <oceano2014lucas@gmail.com>
+Maintainer: Lucas Lima de Oliveira <oceano2014lucas@gmail.com>
 Description: A powerful graphical user interface for aerial photogrammetry analyses.
-License: MIT + file LICENSE
+License: LGPL (>= 3)
 Encoding: UTF-8
 LazyData: true
 Depends:

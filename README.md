@@ -2,7 +2,7 @@
 
 <img src="man/figures/logo.png" align="right" width="83"/>
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
 
 `MedidoR` is an R package developed to optimize drone-based aerial photogrammetry for marine megafauna (eg., whales, dolphins, dugongs, and sharks). It provides interactive Shiny Graphical User Interfaces (GUIs) that seamlessly bridge the gap between empirical scale calibration modeling and automated morphometric body segmentation.
 
@@ -46,16 +46,19 @@ medidor_GUI() # Morphometrics interface
 ```
 
 ## Citation
+
 If you use MedidoR in your research, please cite it as:
 
-de Oliveira, L. L. (2025). MedidoR: Precision Aerial Photogrammetry for Marine Megafauna Research (1.1.0). Zenodo. https://doi.org/10.5281/zenodo.15865770
+de Oliveira, L. L. (2025). MedidoR: Precision Aerial Photogrammetry for Marine Megafauna Research (1.1.0). Zenodo. <https://doi.org/10.5281/zenodo.15865770>
 
 ## License
+
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 ## Contact
+
 For questions or support, please contact:
 
-Lucas de Oliveira - oceano2014lucas@gmail.com
+Lucas de Oliveira - [oceano2014lucas\@gmail.com](mailto:oceano2014lucas@gmail.com){.email}
 
-GitHub issues: https://github.com/deOliveira1996/MedidoR/issues
+GitHub issues: <https://github.com/deOliveira1996/MedidoR/issues>

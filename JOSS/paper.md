@@ -71,9 +71,9 @@ I acknowledge the Projeto Toninhas do Brasil - Univille, and the Grupo de Estudo
 
 5.  de Oliveira, L. L., Andriolo, A., Cremer, M. J., & Zerbini, A. N. (2023a). Aerial photogrammetry techniques using drones to estimate morphometric measurements and body condition in South American small cetaceans. Marine Mammal Science.
 
-6.  de Oliveira, L. L., Fettermann, T., Marcançoli, R. K. M., & Danilewicz, D. (2023b). Drone survey provides preliminary insights into the biological aspects of Bryde’s whales in southeastern Brazil. Latin American Journal of Aquatic Mammals, 18(2), 224–230. <https://doi.org/10.5597/lajam00314>
+6.  de Oliveira, L. L., Fettermann, T., Marcançoli, R. K. M., & Danilewicz, D. (2023b). Drone survey provides preliminary insights into the biological aspects of Bryde’s whales in southeastern Brazil. Latin American Journal of Aquatic Mammals, 18(2), 224–230.
 
-7.  de Oliveira, L. L., (2025). MedidoR (1.0.0.9999). Zenodo. <https://doi.org/10.5281/zenodo.15865770>
+7.  de Oliveira, L. L., (2025). MedidoR (1.0.0.9999). Zenodo.
 
 8.  Dujon, A. M., Ierodiaconou, D., Geeson, J. J., Arnould, J. P. Y., Allan, B. M., Katselidis, K. A., & Schofield, G. (2021). Machine learning to detect marine animals in UAV imagery: effect of morphology, spacing, behaviour and habitat. Remote Sensing in Ecology and Conservation, 7(3), 341–354.
 
