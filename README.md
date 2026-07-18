@@ -1,8 +1,8 @@
 # MedidoR: Aerial Photogrammetry Analysis Tool
 
-<img src="man/figures/logo.png" align="right" width="83"/>
+<img src="man/figures/logo.png" align="right" width="80"/>
 
-[![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
+[![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0) [![DOI: 10.5281/zenodo.15866052](https://img.shields.io/badge/DOI-10.5281/zenodo.15866052-green.svg)](https://doi.org/10.5281/zenodo.15866052)
 
 `MedidoR` is an R package developed to optimize drone-based aerial photogrammetry for marine megafauna (eg., whales, dolphins, dugongs, and sharks). It provides interactive Shiny Graphical User Interfaces (GUIs) that seamlessly bridge the gap between empirical scale calibration modeling and automated morphometric body segmentation.
 
@@ -45,6 +45,28 @@ calib_gui() # Calibration interface
 medidor_GUI() # Morphometrics interface
 ```
 
+## Contributing
+
+- Contributing to `MedidoR`
+
+Thank you for your interest in helping improve `MedidoR`! We welcome contributions from marine biologists, data analysts, and software engineers alike.
+
+- Ways to Contribute
+
+1.  **Report Bugs:** Submit an issue on our GitHub repository describing the error with a minimal reproducible example (`reprex`).
+2.  **Feature Requests:** Open an issue to discuss new photogrammetric routines or support for novel drone sensors.
+3.  **Code Contributions:** Fix open issues or implement features via Pull Requests.
+
+- Pull Request Guidelines
+
+- **Branching:** Always create a descriptive feature branch from the `develop` branch (e.g., `git checkout -b feature-gimbal-correction`). Do not push directly to `main`.
+
+- **Code Style:** Follow the [tidyverse style guide](https://style.tidyverse.org/). Keep code clean and well-commented.
+
+- **Testing:** `MedidoR` utilizes `testthat` and `shinytest2` to validate graphical interfaces. Before submitting any PR, execute `devtools::test()` locally to ensure all GUI states, image uploads, and crop functions are stable. If you introduce new features, you are expected to add corresponding tests.
+
+- **Documentation:** Update functions documentation using `roxygen2` tags and regenerate package files using `devtools::document()`.
+
 ## Citation
 
 If you use MedidoR in your research, please cite it as:
@@ -53,12 +75,12 @@ de Oliveira, L. L. (2025). MedidoR: Precision Aerial Photogrammetry for Marine M
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the GNU LGPL 3 - see the LICENSE file for details.
 
 ## Contact
 
 For questions or support, please contact:
 
-Lucas de Oliveira - [oceano2014lucas\@gmail.com](mailto:oceano2014lucas@gmail.com){.email}
+Lucas Lima de Oliveira - [oceano2014lucas\@gmail.com](mailto:oceano2014lucas@gmail.com)
 
 GitHub issues: <https://github.com/deOliveira1996/MedidoR/issues>

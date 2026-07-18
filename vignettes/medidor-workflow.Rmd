@@ -11,11 +11,11 @@ vignette: >
 library(MedidoR)
 ```
 
-This vignette guides you through the standardized workflow of MedidoR for estimating the body length and condition of marine animals using aerial images captured by commercial drones.
+This vignette guides you through the standardized workflow of `MedidoR` for estimating the body length and condition of marine animals using aerial images captured by commercial drones.
 
 # Introduction
 
-Drone-based photogrammetry converts pixel distances from digital imagery into real-world metric units using the Ground Sample Distance (GSD). Because onboard barometers suffer from environmental drift, MedidoR utilizes an independent calibration routine to build a linear regression model that maps flight altitude to true GSD values.
+Drone-based photogrammetry converts pixel distances from digital imagery into real-world metric units using the Ground Sample Distance (GSD). Because onboard barometers suffer from environmental drift, `MedidoR` utilizes an independent calibration routine to build a linear regression model that maps flight altitude to true GSD values.
 
 # Phase 1: Building the Scale Calibration Model
 
@@ -55,7 +55,7 @@ Set your working directory to the folder containing your target images.
 
 Click IMPORT to load your database.
 
-From here, MedidoR offers two distinct measurement paths depending on your research objectives: Morphometrics Mode (for automated segmentation) and Free Measurement Mode (for specific anatomical features).
+From here, `MedidoR` offers two distinct measurement paths depending on your research objectives: Morphometrics Mode (for automated segmentation) and Free Measurement Mode (for specific anatomical features).
 
 ## Phase 2A: Proportional Morphometrics Mode Ideal for estimating the total length and extracting body condition indices via segmented widths.
 
@@ -95,6 +95,6 @@ Click Browse Calibration File and select the calib.xlsx spreadsheet you generate
 
 Click Run Model Calibration.
 
-Evaluate the Diagnostic and Accuracy Plots (R², RMSE). MedidoR will automatically fit the linear regression model, calculate the Corrected GSD, and update your animal datasets, transforming all pixel values into standardized metric outputs.
+Evaluate the Diagnostic and Accuracy Plots (R², RMSE). `MedidoR` will automatically fit the linear regression model, calculate the Corrected GSD, and update your animal datasets, transforming all pixel values into standardized metric outputs.
 
 Navigate to the Dataframe Tab to inspect the final metric results and verify your standardized dataset.
