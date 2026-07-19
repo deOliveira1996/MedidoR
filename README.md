@@ -71,7 +71,7 @@ Thank you for your interest in helping improve `MedidoR`! We welcome contributio
 
 If you use MedidoR in your research, please cite it as:
 
-de Oliveira, L. L. (2026). MedidoR: An R package for aerial photogrammetry of marine megafauna with integrated scale calibration. Zenodo. <https://doi.org/10.5281/zenodo.15865769>
+de Oliveira, L. L. (2026). MedidoR: Precision Aerial Photogrammetry for Marine Megafauna Research. Zenodo. <https://doi.org/10.5281/zenodo.15865769>
 
 ## License
 
