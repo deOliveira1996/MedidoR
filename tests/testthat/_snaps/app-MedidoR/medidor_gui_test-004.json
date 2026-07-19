@@ -63,7 +63,29 @@
       19,
       20,
       21,
-      22
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44
     ],
     "mTable_rows_current": [
       1,
@@ -317,8 +339,8 @@
       ]
     },
     "checkm": {
-      "src": "[image data hash: b2cdb95b5efc29f2894bf0f0f2961444]",
-      "width": 974.328125,
+      "src": "[image data hash: 3f5be1c3e012869463466d7ef16a984e]",
+      "width": 984.328125,
       "height": 600,
       "alt": "Plot object",
       "coordmap": {
@@ -331,8 +353,8 @@
               "top": 1.04
             },
             "range": {
-              "left": 59.05988963039015,
-              "right": 944.0779376283367,
+              "left": 59.66604979466119,
+              "right": 953.7674653490759,
               "bottom": 525.5600000000001,
               "top": 58.04000000000009
             },
@@ -346,10 +368,11 @@
           }
         ],
         "dims": {
-          "width": 974.328125,
+          "width": 984.328125,
           "height": 600
         }
-      }
+      },
+      "error": null
     },
     "crop_status": {
       "html": "<div class=\"alert alert-info\">Step 1: Select the area of interest on the image using the selection tool and click 'Crop'<\/div>",
@@ -393,7 +416,7 @@
       }
     },
     "lplot": {
-      "src": "[image data hash: d13aaf7a5fa76ced6f0188ef9dc6ecae]",
+      "src": "[image data hash: 72ca0dc80c840300a7a1cbbbb7ff38c0]",
       "width": 974.328125,
       "height": 400,
       "alt": "Plot object",
@@ -645,8 +668,8 @@
       ]
     },
     "mplot": {
-      "src": "[image data hash: bed4d550fad00bcd75b106a719a0b0bf]",
-      "width": 974.328125,
+      "src": "[image data hash: 563ea446c8e2d61fb8e1f920b86703cb]",
+      "width": 984.328125,
       "height": 600,
       "alt": "Plot object",
       "coordmap": {
@@ -660,7 +683,7 @@
             },
             "range": {
               "left": 0,
-              "right": 974.328125,
+              "right": 984.328125,
               "bottom": 599,
               "top": -1
             },
@@ -674,13 +697,14 @@
           }
         ],
         "dims": {
-          "width": 974.328125,
+          "width": 984.328125,
           "height": 600
         }
-      }
+      },
+      "error": null
     },
     "mwhale": {
-      "src": "[image data hash: b5d43b0187ebed635b83c11c78af724f]",
+      "src": "[image data hash: 27f9df3c17de95789e3c3bd5ff6b3c88]",
       "width": 974.328125,
       "height": 400,
       "alt": "Plot object",
@@ -738,8 +762,8 @@
       }
     },
     "variance": {
-      "src": "[image data hash: 81c007029c0423598420bb2179d7429c]",
-      "width": 974.328125,
+      "src": "[image data hash: b018fd7e3b94292bc3d8e202fe28f862]",
+      "width": 984.328125,
       "height": 600,
       "alt": "Plot object",
       "coordmap": {
@@ -753,7 +777,7 @@
             },
             "range": {
               "left": 0,
-              "right": 974.328125,
+              "right": 984.328125,
               "bottom": 599,
               "top": -1
             },
@@ -767,10 +791,11 @@
           }
         ],
         "dims": {
-          "width": 974.328125,
+          "width": 984.328125,
           "height": 600
         }
-      }
+      },
+      "error": null
     }
   },
   "export": {

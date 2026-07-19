@@ -33,27 +33,30 @@
     "obs": "Observer 1",
     "path": 1,
     "plot_brush": null,
-    "plot_click": null,
-    "saveBtn": 0,
+    "plot_click": {
+      "x": 2369.4,
+      "y": 1202.8
+    },
+    "saveBtn": 1,
     "sw": "13.2",
     "takeof": 1.5,
     "wd": "G:/Meu Drive/Drive_Work/_Lucas Oliveira/REPOS/MeDiDOR/inst/extdata/calib_test"
   },
   "output": {
     "add_status": {
-      "html": "<div class=\"alert alert-info\">Step 2: After completing the measurements, click on 'Add-IN button' to save<\/div>",
+      "html": "<div class=\"alert alert-success\">The scale measurements have been saved!<\/div>",
       "deps": [
 
       ]
     },
     "crop_status": {
-      "html": "<div class=\"alert alert-success\">Area selected!<\/div>",
+      "html": "<div class=\"alert alert-info\">Step 1: Select the area of interest on the image using the selection tool and click 'Crop'<\/div>",
       "deps": [
 
       ]
     },
     "imagePlot": {
-      "src": "[image data hash: e9ac648d5e6855bed1987a784a8ee8ad]",
+      "src": "[image data hash: 1bc99bf6f3cad53a59ab641f337a98e7]",
       "width": 1080,
       "height": 720,
       "alt": "Plot object",
@@ -61,16 +64,16 @@
         "panels": [
           {
             "domain": {
-              "left": 1836.324017915623,
-              "right": 2603.021321837277,
-              "bottom": 1457.6559604379,
-              "top": 1002.9866290425
+              "left": 0.9999999999997726,
+              "right": 4096,
+              "bottom": 2294.71511627907,
+              "top": -133.7151162790701
             },
             "range": {
-              "left": 59.04000000000021,
+              "left": 59.03999999999998,
               "right": 1049.76,
               "bottom": 645.5600000000001,
-              "top": 58.04000000000005
+              "top": 58.03999999999997
             },
             "log": {
               "x": null,

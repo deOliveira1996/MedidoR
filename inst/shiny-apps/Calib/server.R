@@ -1,24 +1,36 @@
 options(shiny.maxRequestSize = 50 * 1024^2)
 
+safe_char <- function(x) {
+  if (is.null(x) || length(x) == 0 || trimws(as.character(x)) == "") {
+    return(NA_character_)
+  }
+  return(as.character(x))
+}
+
+safe_num <- function(x) {
+  if (is.null(x) || length(x) == 0 || trimws(as.character(x)) == "") {
+    return(NA_real_)
+  }
+  val <- suppressWarnings(as.numeric(x))
+  if (is.na(val)) return(NA_real_)
+  return(val)
+}
+
 # Define server
 server <- function(input, output, session) {
 
   # Reactive values ----
   rv <- shiny::reactiveValues(
 
-    # Medições
     scale_measurements = data.frame(Length_X = numeric(),
                                     Length_Y = numeric()),
 
-    # Dados principais
     main_data = NULL,
     main = NULL,
     dir_path = NULL,
 
-    # Diretórios
     user_dir = getwd(),
 
-    # Novos dados
     new_id = character(),
     new_res = character(),
     new_date = character(),
@@ -33,17 +45,15 @@ server <- function(input, output, session) {
     new_flen = numeric(),
     new_drone = character(),
 
-    # Imagem
     current_image = NULL,
     crop_status = FALSE,
     add_status = TRUE,
     click_save = FALSE,
 
-    # Dimensões e ranges
     img_width = 0,
     img_height = 0,
     plot_ranges_x = NULL,
-    plot_ranges_y = NULL,
+    plot_ranges_y = NULL
   )
 
   ############################ Path  block ############################
@@ -63,7 +73,6 @@ server <- function(input, output, session) {
   })
 
   # Confirmation  block
-
   shiny::observeEvent(input$confirmBtn, {
     req(input$wd)
     setwd(input$wd)
@@ -72,8 +81,6 @@ server <- function(input, output, session) {
   })
 
   # Create  block
-
-  # Data frame management
   shiny::observeEvent(input$create, {
     req(rv$user_dir)
 
@@ -85,17 +92,14 @@ server <- function(input, output, session) {
 
     tryCatch({
       if (!file.exists(rv$main)) {
-        MedidoR:::create_data2(
-          path = rv$main
-        )
+        MedidoR:::create_data2(path = rv$main)
         shiny::showModal(shiny::modalDialog(
           title = "Success",
           "Scale calibration dataframe created",
           footer = shiny::modalButton("OK")
         ))
 
-        rv$main_data <- readxl::read_xlsx(path = rv$main,
-                                          col_names = T)
+        rv$main_data <- readxl::read_xlsx(path = rv$main, col_names = T)
 
         output$mTable <- DT::renderDataTable({
           rv$main_data
@@ -118,7 +122,6 @@ server <- function(input, output, session) {
   })
 
   # Import  block
-
   shiny::observeEvent(input$import, {
     req(rv$user_dir)
 
@@ -172,14 +175,11 @@ server <- function(input, output, session) {
   })
 
   # Crop  block
-
-  # Crop button logic
   shiny::observeEvent(input$crop, {
     req(input$file)
     req(input$plot_brush)
 
     # Set crop area
-
     rv$plot_ranges_x <- c(input$plot_brush$xmin, input$plot_brush$xmax)
     rv$plot_ranges_y <- c(input$plot_brush$ymax, input$plot_brush$ymin)
 
@@ -188,7 +188,6 @@ server <- function(input, output, session) {
     shiny::updateActionButton(session, "crop", disabled = TRUE)
   })
 
-  # UI feedback for crop state
   output$crop_status <- shiny::renderUI({
     req(input$file)
     if (!rv$crop_status == TRUE) {
@@ -197,45 +196,28 @@ server <- function(input, output, session) {
         "Step 1: Select the area of interest on the image using the selection tool and click 'Crop'"
       )
     } else {
-      div(class = "alert alert-success",
-          "Area selected!")
+      div(class = "alert alert-success", "Area selected!")
     }
   })
 
   ############################ Image plot  block ############################
 
-  # Measurement line drawer functions
-
-  #  Length measurements
   draw_measurement_lines <- function() {
     req(rv$current_image, rv$scale_measurements)
 
     lp <- rv$scale_measurements
-    if (nrow(lp) < 2)
-      return()
+    if (nrow(lp) < 2) return()
 
     start <- data.frame(x = lp$Length_X[1], y = lp$Length_Y[1])
     end <- data.frame(x = lp$Length_X[2], y = lp$Length_Y[2])
 
     # Main lines
-    graphics::segments(start$x,
-                       start$y,
-                       end$x,
-                       end$y,
-                       col = "red",
-                       lwd = 1.5)
-
-    # Vectorial calculations
-    original_dx <- end$x - start$x
-    original_dy <- end$y - start$y
-    perpendicular <- c(-original_dy, original_dx) / sqrt(original_dx^2 + original_dy^2)
+    graphics::segments(start$x, start$y, end$x, end$y, col = "red", lwd = 1.5)
 
     total_length <- sum(sqrt(diff(lp$Length_X)^2 + diff(lp$Length_Y)^2))
     rv$new_objP <- total_length
-
   }
 
-  # Rendering plot
   output$imagePlot <- shiny::renderPlot({
     req(rv$current_image)
 
@@ -254,10 +236,7 @@ server <- function(input, output, session) {
             x_plot = rv$scale_measurements$Length_X,
             y_plot = rv$scale_measurements$Length_Y
           )
-        graphics::points(points_df$x_plot,
-                         points_df$y_plot,
-                         col = "red",
-                         cex = 1.5)
+        graphics::points(points_df$x_plot, points_df$y_plot, col = "red", cex = 1.5)
       }
 
       if (nrow(rv$scale_measurements) == 2) {
@@ -269,7 +248,7 @@ server <- function(input, output, session) {
   })
 
   ############################ Plot click  block ############################
-  # Measurement handling ----
+
   shiny::observeEvent(input$plot_click, {
     req(input$crop, rv$crop_status)
 
@@ -320,61 +299,62 @@ server <- function(input, output, session) {
       shiny::updateActionButton(session, "saveBtn", disabled = FALSE)
     }
 
-    rv$new_res = as.character(input$ImageRES)
-    rv$new_iw = as.numeric(rv$img_width)
-    rv$new_sw = as.numeric(input$sw)
-    rv$new_flen = as.numeric(input$flen)
-    rv$new_id = paste(as.character(input$Date),
-                      as.character(input$ImageID),
-                      c(as.numeric(input$alt) + as.numeric(input$takeof)),
-                      sep = "-")
-    rv$new_date = as.character(input$Date)
-    rv$new_f_alt = as.numeric(input$alt)
-    rv$new_to_alt = as.numeric(input$takeof)
-    rv$new_calti = as.numeric(input$alt) + as.numeric(input$takeof)
-    rv$new_laser_alt = as.numeric(input$laser_alt)
-    rv$new_drone = as.character(input$drone)
-    rv$new_objL = as.numeric(input$objL)
-    rv$new_imid = as.character(input$file$name)
+    alt_val <- as.numeric(input$alt)
+    takeof_val <- as.numeric(input$takeof)
+
+    calti_val <- sum(c(alt_val, takeof_val), na.rm = TRUE)
+    if (is.na(alt_val) && is.na(takeof_val)) calti_val <- NA_real_
+
+    date_str <- safe_char(input$Date)
+    img_id_str <- safe_char(input$ImageID)
+
+    id_parts <- c(date_str, img_id_str, calti_val)
+    id_parts <- id_parts[!is.na(id_parts)]
+    new_id_str <- if(length(id_parts) > 0) paste(id_parts, collapse = "-") else NA_character_
+
+    rv$new_res = safe_char(input$ImageRES)
+    rv$new_iw = safe_num(rv$img_width)
+    rv$new_sw = safe_num(input$sw)
+    rv$new_flen = safe_num(input$flen)
+    rv$new_id = new_id_str
+    rv$new_date = date_str
+    rv$new_f_alt = alt_val
+    rv$new_to_alt = takeof_val
+    rv$new_calti = calti_val
+    rv$new_laser_alt = safe_num(input$laser_alt)
+    rv$new_drone = safe_char(input$drone)
+    rv$new_objL = safe_num(input$objL)
+    rv$new_imid = safe_char(input$file$name)
   })
 
   ############################ Save  block ############################
 
-  # Create New Entry function
   create_new_entry2 <- function() {
-
-    safe_char <- function(x) { if (is.null(x) || length(x) == 0 || trimws(as.character(x)) == "") NA_character_ else as.character(x) }
-    safe_num <- function(x) { if (is.null(x) || length(x) == 0 || is.na(x) || trimws(as.character(x)) == "") NA_real_ else as.numeric(x) }
-
     new_entry <- data.frame(
-      Drone = safe_char(rv$new_drone),
-      Resolution = safe_char(rv$new_res),
-      ID = safe_char(rv$new_id),
+      Drone = rv$new_drone,
+      Resolution = rv$new_res,
+      ID = rv$new_id,
       Obs = safe_char(input$obs),
-      Date = safe_char(rv$new_date),
-      Measured_Date = as.character(format(as.POSIXct(Sys.time()),
-                                          "%Y-%m-%d %H:%M:%S")),
-      TO_Alt = safe_num(rv$new_to_alt),
-      F_Alt = safe_num(rv$new_f_alt),
-      C_Alt = safe_num(rv$new_calti),
-      Laser_Alt = safe_num(rv$new_laser_alt),
-      OBJ_L = safe_num(rv$new_objL),
-      OBJ_P = round(safe_num(rv$new_objP), 2),
-      sw = safe_num(rv$new_sw),
-      iw = safe_num(rv$new_iw),
-      flen = safe_num(rv$new_flen),
-      imid = safe_char(rv$new_imid),
+      Date = rv$new_date,
+      Measured_Date = as.character(format(as.POSIXct(Sys.time()), "%Y-%m-%d %H:%M:%S")),
+      TO_Alt = rv$new_to_alt,
+      F_Alt = rv$new_f_alt,
+      C_Alt = rv$new_calti,
+      Laser_Alt = rv$new_laser_alt,
+      OBJ_L = rv$new_objL,
+      OBJ_P = if (!is.null(rv$new_objP) && length(rv$new_objP) > 0) round(as.numeric(rv$new_objP), 2) else NA_real_,
+      sw = rv$new_sw,
+      iw = rv$new_iw,
+      flen = rv$new_flen,
+      imid = rv$new_imid,
       Comments = safe_char(input$comments),
       stringsAsFactors = FALSE
     )
-
     return(new_entry)
   }
 
-  # Save data function
   save_data <- function(new_entry) {
     tryCatch({
-
       rv$main_data <- readxl::read_xlsx(rv$main, col_names = T) |>
         dplyr::mutate(
           dplyr::across(tidyselect::any_of(c("F_Alt", "TO_Alt", "C_Alt", "Laser_Alt", "OBJ_L",
@@ -403,16 +383,12 @@ server <- function(input, output, session) {
     })
   }
 
-  # Save system ----
   shiny::observeEvent(input$saveBtn, {
     req(rv$main_data)
     tryCatch({
       new_entry <- create_new_entry2()
-
       save_data(new_entry = new_entry)
-
       rv$click_save <- TRUE
-
       output$mTable <- DT::renderDataTable({
         rv$current_data
       })
@@ -423,28 +399,6 @@ server <- function(input, output, session) {
     })
   })
 
-  # Save system ----
-  shiny::observeEvent(input$saveBtn, {
-    req(rv$main_data)
-    tryCatch({
-      # Criar nova entrada
-      new_entry <- create_new_entry2()
-
-      save_data(new_entry = new_entry)
-
-      rv$click_save <- TRUE
-
-      output$mTable <- DT::renderDataTable({
-        rv$current_data
-      })
-      return(TRUE)
-    }, error = function(e) {
-      showNotification(paste("Error when saving:", e$message), type = "error")
-      return(FALSE)
-    })
-  })
-
-  # UI feedback for add state
   output$add_status <- shiny::renderUI({
     req(input$file)
     if (rv$click_save == FALSE) {
@@ -459,8 +413,6 @@ server <- function(input, output, session) {
   })
 
   # Clear  block
-
-  # Measurement Reset Warning
   shiny::observeEvent(input$clearBtn, {
     shiny::showModal(
       shiny::modalDialog(
@@ -477,7 +429,6 @@ server <- function(input, output, session) {
   shiny::observeEvent(input$confirm_reset, {
     rv$scale_measurements <- data.frame()
 
-    # Novos dados
     rv$new_id = character()
     rv$new_imid = character()
     rv$new_objL = numeric()
@@ -492,11 +443,13 @@ server <- function(input, output, session) {
     rv$crop_status = FALSE
     rv$add_status = TRUE
     rv$click_status = FALSE
+
     shiny::updateActionButton(session, "crop", disabled = FALSE)
     shiny::updateActionButton(session, "saveBtn", disabled = TRUE)
     shiny::updateTextInput(inputId = "comments", value = "")
     shiny::updateTextInput(inputId = "ImageID", value = "")
     shiny::updateNumericInput(inputId = "alt", value = 20)
+
     rv$plot_ranges_x = NULL
     rv$plot_ranges_y = NULL
 

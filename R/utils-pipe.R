@@ -1,8 +1,10 @@
-
 #' @title dtfilter
+#' @description
+#' Function to filter the data for the data.table output
 #' @importFrom tidyr gather
 #' @importFrom dplyr arrange
 #' @export
+#' @param x Dataframe to filter.
 
 dtfilter <- function(x) {
   x <- x |>
@@ -33,13 +35,14 @@ dtfilter <- function(x) {
     ) |>
     dplyr::arrange(Measured_Date, by_group = ID)
   return(x)
-} # Function to filter the data for the data.table output
+}
 
-#' @title Generate modal dialog
+#' @title show_measurement_modal
+#' @description
+#' Is a helper functions to generate modal dialog
 #' @importFrom shiny showModal modalDialog
 #' @keywords internal
 
-# Helper functions ----
 show_measurement_modal <- function(message) {
   shiny::showModal(
     shiny::modalDialog(
@@ -51,7 +54,9 @@ show_measurement_modal <- function(message) {
   )
 }
 
-#' @title Update the data table in UI
+#' @title update_data_table
+#' @description
+#' Update the data table in UI
 #' @importFrom DT datatable
 #' @keywords internal
 
@@ -68,7 +73,9 @@ update_data_table <- function(path) {
   }
 }
 
-#' @title Get the directory paths
+#' @title get_directory_path
+#' @description
+#' Get the directory paths
 #' @keywords internal
 get_directory_path <- function(segments, user_dir) {
   dir_name <- if (segments == 1) {
@@ -81,7 +88,9 @@ get_directory_path <- function(segments, user_dir) {
   normalizePath(file.path(user_dir, dir_name), mustWork = FALSE)
 }
 
-#' @title Generate the file paths for data
+#' @title get_file_paths
+#' @description
+#' Generate the file paths for data
 #' @keywords internal
 get_file_paths <- function(dir_path, segments) {
   base_name <- if (segments == 1) {
@@ -116,7 +125,9 @@ create_data_free <- function(path, path2) {
   writexl::write_xlsx(dt, path2) # Mantido para padronização de pipeline
 }
 
-#' @title Update the data with calibration model estimates
+#' @title update_measurements
+#' @description
+#' Update the data with calibration model estimates
 #' @keywords internal
 #' @importFrom writexl write_xlsx
 #' @importFrom readxl read_xlsx
@@ -165,10 +176,13 @@ update_measurements <- function(main_path, secondary_path,
   return(NULL)
 }
 
-#' @title Import calibration data
+#' @title calib
+#' @description
+#' Import calibration data
 #' @importFrom readxl read_excel
 #' @importFrom dplyr select mutate across
 #' @import tidyverse
+#' @param file Path to the input file.
 
 
 calib <- function(file = "") {
@@ -184,7 +198,7 @@ calib <- function(file = "") {
     )
 }
 
-#' @title Create measurement template
+#' @title create_data
 #' @description Generates interval measurement templates
 #' @importFrom writexl write_xlsx
 #' @keywords internal

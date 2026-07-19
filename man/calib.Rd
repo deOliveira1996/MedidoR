@@ -2,9 +2,12 @@
 % Please edit documentation in R/utils-pipe.R
 \name{calib}
 \alias{calib}
-\title{Import calibration data}
+\title{calib}
 \usage{
 calib(file = "")
+}
+\arguments{
+\item{file}{Path to the input file.}
 }
 \description{
 Import calibration data

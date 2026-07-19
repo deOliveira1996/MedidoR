@@ -1,0 +1,100 @@
+---
+title: "Step-by-Step Aerial Photogrammetry Workflow with MedidoR"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Step-by-Step Aerial Photogrammetry Workflow with MedidoR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, eval=FALSE}
+library(MedidoR)
+```
+
+This vignette guides you through the standardized workflow of `MedidoR` for estimating the body length and condition of marine animals using aerial images captured by commercial drones.
+
+# Introduction
+
+Drone-based photogrammetry converts pixel distances from digital imagery into real-world metric units using the Ground Sample Distance (GSD). Because onboard barometers suffer from environmental drift, `MedidoR` utilizes an independent calibration routine to build a linear regression model that maps flight altitude to true GSD values.
+
+# Phase 1: Building the Scale Calibration Model
+
+Before extracting measurements from target animals, you must process the reference calibration dataset.
+
+## Step 1.1: Initialize the Calibration Environment
+
+Launch the scale application:
+
+```{r calib, eval=FALSE}
+calib_GUI()
+```
+
+Click Change Working Directory and navigate to your desired analysis folder.
+
+Click CREATE to initialize a clean calib.xlsx database structure.
+
+## Step 1.2: Import and Measure Reference Images Click Browse and upload your reference object file (e.g., a known 2-meter calibration frame file like Molde_15M_1.png).
+
+Input the known metric values in Scale length (m) (e.g., 2).
+
+Fill out the camera parameters (Camera sensor width, Camera focal length, and Flight Altitude).
+
+Use the cursor to draw a bounding box around the object and click Crop.
+
+Click on both ends of the reference object on the cropped image plot.
+
+Click ADD-IN to append this measurement to the database. Repeat this for images captured at various heights (e.g., 10m, 15m, 20m, 25m).
+
+## Phase 2: Morphometric Extraction of Target Megafauna Once your calibration database is populated, you are ready to process animal footage. Launch the primary measurement application:
+
+```{r medidor, eval=FALSE}
+medidor_GUI()
+```
+
+Set your working directory to the folder containing your target images.
+
+Click IMPORT to load your database.
+
+From here, `MedidoR` offers two distinct measurement paths depending on your research objectives: Morphometrics Mode (for automated segmentation) and Free Measurement Mode (for specific anatomical features).
+
+## Phase 2A: Proportional Morphometrics Mode Ideal for estimating the total length and extracting body condition indices via segmented widths.
+
+Select Morphometrics Mode and set your target intervals (e.g., 10% segments).
+
+Upload your target animal image and fill out the associated flight parameters in the sidebar.
+
+Draw a selection box over the animal's body and click Crop.
+
+Trace the Centerline: Click 3 consecutive times along the animal's spine (Tip of the rostrum, Mid-body, and Fluke notch).
+
+Trace Width Segments: The application will automatically draw perpendicular blue lines across the body at the chosen increments. Click on the left and right body margins where the blue lines intersect the skin boundaries.
+
+Trace Fluke Width: Finally, click on both outer tips of the tail fluke.
+
+Click Save to append the data.
+
+## Phase 2B: Free Measurement Mode Ideal for extracting linear distances of specific, customized anatomical traits, such as rostrum-to-blowhole distance, dorsal fin base, or scar lengths.
+
+# Select Free Mode.
+
+Upload your target animal image, fill out the flight parameters, draw a bounding box, and click Crop.
+
+Initialize the tool: Click the New Measurement button to unlock the free-mode module.
+
+Define the feature: Click Start Measurement. A text field will appear prompting you to name the feature you are about to measure. Type a custom identifier (e.g., TIP-ROSTRUM, SCAR-1, or MID-GIRTH) and click Start Measurement again to confirm.
+
+Measure: Click exactly two points on the cropped image. A red line will connect them, establishing the linear distance in pixels.
+
+Save the feature: Click Save to record this specific measurement into the database.
+
+Iterate or Conclude: If you need to measure another feature on the same animal, click Continue. The system will prompt you for a new identifier (e.g., FLUKE-WIDTH). Repeat the two clicks and save. Once all desired features for the current animal have been captured, click Finish to conclude the session and reset the canvas for the next image.
+
+## Phase 3: Model Calibration and Data Export Navigate to the Calibration Tab within the UI.
+
+Click Browse Calibration File and select the calib.xlsx spreadsheet you generated in Phase 1.
+
+Click Run Model Calibration.
+
+Evaluate the Diagnostic and Accuracy Plots (R², RMSE). `MedidoR` will automatically fit the linear regression model, calculate the Corrected GSD, and update your animal datasets, transforming all pixel values into standardized metric outputs.
+
+Navigate to the Dataframe Tab to inspect the final metric results and verify your standardized dataset.

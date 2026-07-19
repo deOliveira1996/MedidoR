@@ -1,10 +1,10 @@
 library(shinytest2)
 
 test_that("{shinytest2} recording: free_mode_test", {
-  local_app_support(test_path("../../inst/shiny-apps/MedidoR"))
-
-  app <- AppDriver$new(test_path("../../inst/shiny-apps/MedidoR"), name = "free_mode_test",
-                       seed = 321, height = 911, width = 1619)
+  app_dir <- system.file("shiny-apps", "MedidoR", package = "MedidoR")
+  local_app_support(app_dir)
+  app <- AppDriver$new(app_dir, name = "medidor_gui_test",
+                       seed = 567, height = 911, width = 1619)
 
   app$click("path")
   app$wait_for_idle()
@@ -63,10 +63,10 @@ test_that("{shinytest2} recording: free_mode_test", {
   app$set_inputs(plot_click = list(x = 994.3, y = 838.4), allow_no_input_binding_ = TRUE, priority_ = "event")
   app$wait_for_idle(1000)
 
-  app$expect_values()
-
   app$click("saveBtn")
   app$wait_for_idle(1000)
+
+  app$expect_values()
 
   app$click("continue_free")
   app$wait_for_idle(1000)
@@ -82,10 +82,10 @@ test_that("{shinytest2} recording: free_mode_test", {
   app$set_inputs(plot_click = list(x = 1248.3, y = 970.4), allow_no_input_binding_ = TRUE, priority_ = "event")
   app$wait_for_idle(1000)
 
-  app$expect_values()
-
   app$click("saveBtn")
   app$wait_for_idle(1000)
+
+  app$expect_values()
 
   app$click("finish_free")
   app$wait_for_idle(1000)

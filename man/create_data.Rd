@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils-pipe.R
 \name{create_data}
 \alias{create_data}
-\title{Create measurement template}
+\title{create_data}
 \usage{
 create_data(segments, path, path2)
 }

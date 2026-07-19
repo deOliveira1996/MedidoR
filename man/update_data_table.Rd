@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils-pipe.R
 \name{update_data_table}
 \alias{update_data_table}
-\title{Update the data table in UI}
+\title{update_data_table}
 \usage{
 update_data_table(path)
 }

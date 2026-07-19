@@ -1,10 +1,10 @@
 library(shinytest2)
 
 test_that("{shinytest2} recording: calib_gui_test", {
-  local_app_support(test_path("../../inst/shiny-apps/Calib"))
-  app <- AppDriver$new(test_path("../../inst/shiny-apps/Calib"), name = "calib_gui_test",
+  app_dir <- system.file("shiny-apps", "Calib", package = "MedidoR")
+  local_app_support(app_dir)
+  app <- AppDriver$new(app_dir, name = "calib_gui_test",
                        seed = 123, height = 911, width = 1619)
-
 
   app$click("path")
   app$wait_for_idle()
@@ -28,7 +28,6 @@ test_that("{shinytest2} recording: calib_gui_test", {
   app$wait_for_idle(timeout = 5000)
 
   app$set_inputs(main_tabs = "Image plot")
-  app$wait_for_idle()
 
   app$set_inputs(
     objL = "2",
@@ -60,10 +59,10 @@ test_that("{shinytest2} recording: calib_gui_test", {
   app$set_inputs(plot_click = list(x = 2054.38, y = 1206.52), allow_no_input_binding_ = TRUE, priority_ = "event")
   app$set_inputs(plot_click = list(x = 2369.4, y = 1202.8), allow_no_input_binding_ = TRUE, priority_ = "event")
 
-  app$expect_values()
-
   app$click("saveBtn")
   app$wait_for_idle()
+
+  app$expect_values()
 
   app$click("clearBtn")
 
