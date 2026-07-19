@@ -343,16 +343,17 @@ with MedidoR</h1>
 
 
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(MedidoR)</span></code></pre></div>
-<p>This vignette guides you through the standardized workflow of MedidoR
-for estimating the body length and condition of marine animals using
-aerial images captured by commercial drones.</p>
+<p>This vignette guides you through the standardized workflow of
+<code>MedidoR</code> for estimating the body length and condition of
+marine animals using aerial images captured by commercial drones.</p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>Drone-based photogrammetry converts pixel distances from digital
 imagery into real-world metric units using the Ground Sample Distance
 (GSD). Because onboard barometers suffer from environmental drift,
-MedidoR utilizes an independent calibration routine to build a linear
-regression model that maps flight altitude to true GSD values.</p>
+<code>MedidoR</code> utilizes an independent calibration routine to
+build a linear regression model that maps flight altitude to true GSD
+values.</p>
 </div>
 <div id="phase-1-building-the-scale-calibration-model" class="section level1">
 <h1>Phase 1: Building the Scale Calibration Model</h1>
@@ -388,8 +389,8 @@ footage. Launch the primary measurement application:</h2>
 <p>Set your working directory to the folder containing your target
 images.</p>
 <p>Click IMPORT to load your database.</p>
-<p>From here, MedidoR offers two distinct measurement paths depending on
-your research objectives: Morphometrics Mode (for automated
+<p>From here, <code>MedidoR</code> offers two distinct measurement paths
+depending on your research objectives: Morphometrics Mode (for automated
 segmentation) and Free Measurement Mode (for specific anatomical
 features).</p>
 </div>
@@ -443,10 +444,10 @@ Calibration Tab within the UI.</h2>
 <p>Click Browse Calibration File and select the calib.xlsx spreadsheet
 you generated in Phase 1.</p>
 <p>Click Run Model Calibration.</p>
-<p>Evaluate the Diagnostic and Accuracy Plots (R², RMSE). MedidoR will
-automatically fit the linear regression model, calculate the Corrected
-GSD, and update your animal datasets, transforming all pixel values into
-standardized metric outputs.</p>
+<p>Evaluate the Diagnostic and Accuracy Plots (R², RMSE).
+<code>MedidoR</code> will automatically fit the linear regression model,
+calculate the Corrected GSD, and update your animal datasets,
+transforming all pixel values into standardized metric outputs.</p>
 <p>Navigate to the Dataframe Tab to inspect the final metric results and
 verify your standardized dataset.</p>
 </div>

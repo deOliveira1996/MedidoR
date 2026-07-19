@@ -45,11 +45,23 @@
     "mTable_columns_selected": null,
     "mTable_rows_all": [
       1,
-      2
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
     ],
     "mTable_rows_current": [
       1,
-      2
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
     ],
     "mTable_rows_selected": null,
     "mTable_search": "",
@@ -351,7 +363,9 @@
                 13,
                 14,
                 15,
-                18
+                18,
+                19,
+                20
               ]
             },
             {

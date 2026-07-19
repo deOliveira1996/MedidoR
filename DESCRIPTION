@@ -1,7 +1,7 @@
 Package: MedidoR
 Type: Package
 Title: Aerial Photogrammetry Analyses
-Version: 1.2.2
+Version: 1.2.0
 Authors@R: c(person(given = "Lucas",
            family = "de Oliveira",
            role = "cre",
@@ -17,7 +17,6 @@ Depends:
     R (>= 4.1.0)
 Imports:
     stats,
-    utils,
     graphics,
     shiny,
     htmltools,

@@ -28,7 +28,6 @@ test_that("{shinytest2} recording: calib_gui_test", {
   app$wait_for_idle(timeout = 5000)
 
   app$set_inputs(main_tabs = "Image plot")
-  app$wait_for_idle()
 
   app$set_inputs(
     objL = "2",

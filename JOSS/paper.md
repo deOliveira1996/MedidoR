@@ -32,7 +32,7 @@ A cost-effective alternative to hardware modifications is the use of scale calib
 
 # Software design
 
-The `MedidoR` package [@deOliveira:2025] is structured into two interconnected modules built on the Shiny framework, creating a continuous workflow from calibration to final measurement extraction:
+The `MedidoR` package [@deOliveira:2026] is structured into two interconnected modules built on the Shiny framework, creating a continuous workflow from calibration to final measurement extraction:
 
 1.  **MedidoR-Scale (`calib_GUI`)**: A dedicated utility for generating calibration datasets. Users import images of reference objects of known length captured at varying altitudes. The GUI calculates the empirical Ground Sample Distance (eGSD) for each altitude. The software implements the calibration methodology described by @deOliveira:2023a, assuming a linear relationship between the eGSD and the observed flight altitude.
 

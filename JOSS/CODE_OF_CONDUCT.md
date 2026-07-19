@@ -17,4 +17,4 @@ Examples of unacceptable behavior include:
 * Publishing others' private information without explicit permission.
 
 ## Enforcement
-Community leaders are responsible for clarifying and enforcing our standards of acceptable behavior and will take appropriate and fair corrective action in response to any behavior that they deem inappropriate or harmful. Misbehavior can be reported directly to the maintainer's institutional email.
+Community leaders are responsible for clarifying and enforcing our standards of acceptable behavior and will take appropriate and fair corrective action in response to any behavior that they deem inappropriate or harmful. Misbehavior can be reported directly to the maintainer's email at oceano2014lucas@gmail.com.
