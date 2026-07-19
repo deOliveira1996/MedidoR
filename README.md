@@ -2,7 +2,7 @@
 
 <img src="man/figures/logo.png" align="right" width="80"/>
 
-[![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0) [![DOI: 10.5281/zenodo.15866052](https://img.shields.io/badge/DOI-10.5281/zenodo.15866052-green.svg)](https://doi.org/10.5281/zenodo.15866052)
+[![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0) [![DOI: 10.5281/zenodo.15866052](https://img.shields.io/badge/DOI-10.5281/zenodo.15865769-green.svg)](https://doi.org/10.5281/zenodo.15865769)
 
 `MedidoR` is an R package developed to optimize drone-based aerial photogrammetry for marine megafauna (eg., whales, dolphins, dugongs, and sharks). It provides interactive Shiny Graphical User Interfaces (GUIs) that seamlessly bridge the gap between empirical scale calibration modeling and automated morphometric body segmentation.
 
@@ -71,7 +71,7 @@ Thank you for your interest in helping improve `MedidoR`! We welcome contributio
 
 If you use MedidoR in your research, please cite it as:
 
-de Oliveira, L. L. (2026).  MedidoR: Precision Aerial Photogrammetry for Marine Megafauna Research. Zenodo. <https://doi.org/10.5281/zenodo.15865769>
+de Oliveira, L. L. (2026). MedidoR: Precision Aerial Photogrammetry for Marine Megafauna Research. Zenodo. <https://doi.org/10.5281/zenodo.15865769>
 
 ## License
 
