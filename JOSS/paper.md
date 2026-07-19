@@ -52,7 +52,7 @@ Over the last decade, the emerging tools have been rapidly inceasing their numbe
 
 # AI usage disclosure
 
-No generative AI tools were used in the development of the source code or the conceptual design of this software. Generative AI (Google Gemini 3.1 pro) was utilized strictly for copy-editing and formatting this manuscript to comply with JOSS submission guidelines. All automated outputs were rigorously reviewed, validated, and edited by the human author, who assumes full responsibility for the content.
+No generative AI tools were used in the development of the source code or the conceptual design of this software. Generative AI (Google Gemini 3.1 pro) was utilized strictly for copy-editing and formatting this manuscript to comply with JOSS submission guidelines and generate the base-image for workflow illustration (Figure 3). All automated outputs were rigorously reviewed, validated, and edited by the human author, who assumes full responsibility for the content.
 
 # Acknowledgements
 
