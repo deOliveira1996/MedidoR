@@ -3,10 +3,10 @@ name: Draft JOSS PDF
 on:
   push:
     paths:
-      - JOSS/paper.md
-      - JOSS/paper.bib
-      - JOSS/figures/**
-      - .github/workflows/draft-pdf.yml
+      - 'JOSS/paper.md'
+      - 'JOSS/paper.bib'
+      - 'JOSS/figures/**'
+      - '.github/workflows/draft-pdf.yml'
 
 jobs:
   paper:
@@ -26,10 +26,10 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: paper
-          path: paper/paper.pdf
+          path: JOSS/paper.pdf
 
       - name: Commit PDF to repository
         uses: EndBug/add-and-commit@v9
         with:
-        message: '(auto) Paper PDF Draft'
-        add: 'paper/paper.pdf'
+          message: '(auto) Paper PDF Draft'
+          add: JOSS/paper.pdf
