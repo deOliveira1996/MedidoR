@@ -40,7 +40,7 @@ Launching the Application To start the MedidoR Shiny application:
 ``` r
 library(MedidoR)
 
-calib_gui() # Calibration interface
+calib_GUI() # Calibration interface
 
 medidor_GUI() # Morphometrics interface
 ```

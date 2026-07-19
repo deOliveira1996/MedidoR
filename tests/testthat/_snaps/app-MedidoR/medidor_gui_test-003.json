@@ -52,7 +52,40 @@
       8,
       9,
       10,
-      11
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44
     ],
     "mTable_rows_current": [
       1,
@@ -385,7 +418,7 @@
       "x": {
         "filter": "none",
         "vertical": false,
-        "container": "<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Drone<\/th>\n      <th>Resolution<\/th>\n      <th>ID<\/th>\n      <th>Obs<\/th>\n      <th>Species<\/th>\n      <th>Date<\/th>\n      <th>Measured_Date<\/th>\n      <th>TO_Alt<\/th>\n      <th>F_Alt<\/th>\n      <th>C_Alt<\/th>\n      <th>Laser_Alt<\/th>\n      <th>Frame_Score<\/th>\n      <th>sw<\/th>\n      <th>iw<\/th>\n      <th>flen<\/th>\n      <th>imid<\/th>\n      <th>cGSD<\/th>\n      <th>EstLength<\/th>\n      <th>Comments<\/th>\n      <th>Segments<\/th>\n      <th>Pixel<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>",
+        "container": "<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Drone<\/th>\n      <th>Resolution<\/th>\n      <th>ID<\/th>\n      <th>Obs<\/th>\n      <th>Species<\/th>\n      <th>Date<\/th>\n      <th>Measured_Date<\/th>\n      <th>TO_Alt<\/th>\n      <th>F_Alt<\/th>\n      <th>C_Alt<\/th>\n      <th>Laser_Alt<\/th>\n      <th>Frame_Score<\/th>\n      <th>sw<\/th>\n      <th>iw<\/th>\n      <th>flen<\/th>\n      <th>imid<\/th>\n      <th>Comments<\/th>\n      <th>cGSD<\/th>\n      <th>EstLength<\/th>\n      <th>Segments<\/th>\n      <th>Pixel<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>",
         "options": {
           "pageLength": 11,
           "autoWidth": true,
@@ -401,6 +434,8 @@
                 13,
                 14,
                 15,
+                18,
+                19,
                 21
               ]
             },
@@ -477,15 +512,15 @@
               "targets": 16
             },
             {
-              "name": "cGSD",
+              "name": "Comments",
               "targets": 17
             },
             {
-              "name": "EstLength",
+              "name": "cGSD",
               "targets": 18
             },
             {
-              "name": "Comments",
+              "name": "EstLength",
               "targets": 19
             },
             {

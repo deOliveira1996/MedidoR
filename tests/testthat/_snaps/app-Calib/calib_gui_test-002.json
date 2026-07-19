@@ -34,7 +34,10 @@
     "obs": "Observer 1",
     "path": 1,
     "plot_brush": null,
-    "plot_click": null,
+    "plot_click": {
+      "x": 2369.4,
+      "y": 1202.8
+    },
     "saveBtn": 1,
     "sw": "13.2",
     "takeof": 1.5,
