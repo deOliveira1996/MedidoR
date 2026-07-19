@@ -20,7 +20,14 @@ You can install the development version of MedidoR from GitHub:
 if (!require("devtools")) install.packages("devtools")
 
 # Install MedidoR
-devtools::install_github("deOliveira1996/MeDiDOR")
+devtools::install_github("deOliveira1996/MedidoR")
+
+OR
+
+if (!require("pak")) install.packages("pak")
+
+# Install MedidoR
+pak::pak("deOliveira1996/MedidoR")
 ```
 
 ## Usage
@@ -169,4 +176,4 @@ For questions or support, please contact:
 
 Lucas de Oliveira - [oceano2014lucas\@gmail.com](mailto:oceano2014lucas@gmail.com)
 
-GitHub issues: <https://github.com/deOliveira1996/MeDiDOR/issues>
+GitHub issues: <https://github.com/deOliveira1996/MedidoR/issues>
