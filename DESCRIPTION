@@ -30,14 +30,10 @@ Imports:
     dplyr,
     tidyr,
     tidyverse,
-<<<<<<< HEAD
     ggplot2,
     lattice,
     Hmisc,
     purrr
-=======
-    ggplot2
->>>>>>> develop
 RoxygenNote: 7.3.3
 VignetteBuilder: knitr
 Suggests: 
