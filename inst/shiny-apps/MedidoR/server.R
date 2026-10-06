@@ -1077,7 +1077,7 @@ server <- function(input, output, session) {
 
       p <- ggplot2::ggplot(
         as.data.frame(rv$calib_data),
-        ggplot2::aes(x = as.factor(round(C_Alt, 0)), y = LcGSD/100)
+        ggplot2::aes(x = as.factor(round(C_Alt, 0)), y = LcGSD)
       ) +
         ggplot2::stat_summary(
           fun.data = "mean_sdl",
