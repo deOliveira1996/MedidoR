@@ -893,7 +893,7 @@ server <- function(input, output, session) {
                                     data = rv$calib_data)
 
         rv$calib_data$cGSD <- stats::predict(rv$calib_model, rv$calib_data)
-        rv$calib_data$LcGSD <- rv$calib_data$cGSD * rv$calib_data$Pixel
+        rv$calib_data$LcGSD <- rv$calib_data$cGSD * rv$calib_data$OBJ_P
 
         if (input$app_mode == "free") {
 
