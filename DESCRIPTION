@@ -1,7 +1,7 @@
 Package: MedidoR
 Type: Package
 Title: Aerial Photogrammetry Analyses
-Version: 1.2.0
+Version: 1.2.1
 Authors@R: c(person(given = "Lucas",
            family = "de Oliveira",
            role = "cre",
@@ -30,11 +30,7 @@ Imports:
     dplyr,
     tidyr,
     tidyverse,
-    ggplot2,
-    lattice,
-    Hmisc,
-    purrr
-RoxygenNote: 7.3.3
+    ggplot2
 VignetteBuilder: knitr
 Suggests: 
     knitr,
@@ -43,3 +39,4 @@ Suggests:
     shinytest2
 Config/testthat/edition: 3
 Roxygen: list(markdown = TRUE)
+Config/roxygen2/version: 8.1.0

@@ -893,7 +893,7 @@ server <- function(input, output, session) {
                                     data = rv$calib_data)
 
         rv$calib_data$cGSD <- stats::predict(rv$calib_model, rv$calib_data)
-        rv$calib_data$LcGSD <- rv$calib_data$cGSD * rv$calib_data$Pixel
+        rv$calib_data$LcGSD <- rv$calib_data$cGSD * rv$calib_data$OBJ_P
 
         if (input$app_mode == "free") {
 
@@ -959,7 +959,7 @@ server <- function(input, output, session) {
                                     data = rv$calib_data)
 
         rv$calib_data$cGSD <- stats::predict(rv$calib_model, rv$calib_data)
-        rv$calib_data$LcGSD <- rv$calib_data$cGSD * rv$calib_data$Pixel
+        rv$calib_data$LcGSD <- rv$calib_data$cGSD * rv$calib_data$OBJ_P
 
         if (input$app_mode == "free") {
 
@@ -1050,13 +1050,34 @@ server <- function(input, output, session) {
     req(input$calib, rv$calib_data, rv$calib_train)
 
     tryCatch({
-      if (!"C_Alt" %in% names(rv$calib_data) || !"LcGSD" %in% names(rv$calib_data) || !"ObjLength" %in% names(rv$calib_data)) {
+      if (!"C_Alt" %in% names(rv$calib_data) || !"LcGSD" %in% names(rv$calib_data) || !"OBJ_L" %in% names(rv$calib_data)) {
         stop("Calibration data does not contain required columns")
       }
 
+      mean_p_obj <- rv$calib_data |>
+        dplyr::group_by(OBJ_L) |>
+        dplyr::summarise(mean_LcGSD = mean(LcGSD, na.rm = TRUE), .groups = "drop")
+
+      real_intercepts <- mean_p_obj$OBJ_L
+      real_labels <- paste("Real length:", round(real_intercepts, 2), "m")
+      real_colors <- rep("blue", length(real_intercepts))
+      real_linetypes <- rep(1, length(real_intercepts)) # 1 = linha sólida
+
+      est_intercepts <- mean_p_obj$mean_LcGSD/100
+      est_labels <- paste("Mean est. for", round(real_intercepts, 2), "m:", round(est_intercepts, 2), "m")
+      est_colors <- rep("red", length(est_intercepts))
+      est_linetypes <- rep(2, length(est_intercepts)) # 2 = tracejada (destaca visualmente da real)
+
+      df_lines <- data.frame(
+        intercepts = c(real_intercepts, est_intercepts),
+        labels = c(real_labels, est_labels),
+        colors = c(real_colors, est_colors),
+        linetypes = c(real_linetypes, est_linetypes)
+      )
+
       p <- ggplot2::ggplot(
         as.data.frame(rv$calib_data),
-        ggplot2::aes(x = as.factor(round(C_Alt, 0)), y = LcGSD)
+        ggplot2::aes(x = as.factor(round(C_Alt, 0)), y = LcGSD/100)
       ) +
         ggplot2::stat_summary(
           fun.data = "mean_sdl",
@@ -1082,30 +1103,21 @@ server <- function(input, output, session) {
           )
         ) +
         ggplot2::geom_hline(
-          ggplot2::aes(yintercept = unique(ObjLength) / 100,
-                       linetype = paste("Object length:", round(unique(ObjLength)/100, 2), "m")),
-          colour = 'blue',
-          linewidth = 1
-        ) +
-        ggplot2::geom_hline(
-          ggplot2::aes(yintercept = mean(LcGSD),
-                       linetype = paste("Mean estimated length:", round(mean(LcGSD), 2), "m")),
-          colour = 'red',
+          data = df_lines,
+          ggplot2::aes(yintercept = intercepts, linetype = labels, color = labels),
           linewidth = 1
         ) +
         ggplot2::scale_linetype_manual(
           name = "Reference Lines",
-          values = c(1, 1),
-          guide = ggplot2::guide_legend(
-            override.aes = list(
-              colour = c("red", "blue"),
-              linewidth = 1
-            )
-          )
+          values = setNames(df_lines$linetypes, df_lines$labels)
+        ) +
+        ggplot2::scale_color_manual(
+          name = "Reference Lines",
+          values = setNames(df_lines$colors, df_lines$labels)
         ) +
         ggplot2::theme(
           legend.position = "bottom",
-          legend.box = "horizontal",
+          legend.direction = "vertical",
           legend.title = ggplot2::element_text(face = "bold")
         )
 

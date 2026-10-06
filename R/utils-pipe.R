@@ -187,14 +187,14 @@ update_measurements <- function(main_path, secondary_path,
 
 calib <- function(file = "") {
   readxl::read_excel(file) |>
-    dplyr::select(Date, Pixel, ObjLength,
-                  GPSAlt, TO_Alt, Laser_Alt) |>
+    dplyr::select(Date, OBJ_P, OBJ_L,
+                  F_Alt, TO_Alt, Laser_Alt) |>
     dplyr::mutate(
       Date = as.factor(Date),
-      dplyr::across(c(Pixel, ObjLength,
-                      GPSAlt, TO_Alt, Laser_Alt), as.numeric),
-      C_Alt = GPSAlt + TO_Alt,
-      eGSD = round((ObjLength/100)/Pixel, 4)
+      dplyr::across(c(OBJ_P, OBJ_L,
+                      F_Alt, TO_Alt, Laser_Alt), as.numeric),
+      C_Alt = F_Alt + TO_Alt,
+      eGSD = round((OBJ_L)/OBJ_P, 4)
     )
 }
 
