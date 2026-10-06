@@ -26,7 +26,6 @@ devtools::install_github("deOliveira1996/MedidoR")
 
 OR
 
-# Install devtools if not already installed
 if (!require("pak")) install.packages("pak")
 
 # Install MedidoR
