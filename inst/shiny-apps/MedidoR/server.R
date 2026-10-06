@@ -1063,7 +1063,7 @@ server <- function(input, output, session) {
       real_colors <- rep("blue", length(real_intercepts))
       real_linetypes <- rep(1, length(real_intercepts)) # 1 = linha sólida
 
-      est_intercepts <- mean_p_obj$mean_LcGSD/100
+      est_intercepts <- mean_p_obj$mean_LcGSD
       est_labels <- paste("Mean est. for", round(real_intercepts, 2), "m:", round(est_intercepts, 2), "m")
       est_colors <- rep("red", length(est_intercepts))
       est_linetypes <- rep(2, length(est_intercepts)) # 2 = tracejada (destaca visualmente da real)
