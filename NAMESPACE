@@ -4,62 +4,80 @@ export(calib_GUI)
 export(dtfilter)
 export(medidor_GUI)
 import(tidyverse)
-importFrom(DT,datatable)
-importFrom(DT,renderDataTable)
-importFrom(caret,train)
-importFrom(caret,trainControl)
-importFrom(dplyr,across)
-importFrom(dplyr,arrange)
-importFrom(dplyr,bind_rows)
-importFrom(dplyr,mutate)
-importFrom(dplyr,select)
-importFrom(ggplot2,aes)
-importFrom(ggplot2,element_text)
-importFrom(ggplot2,geom_col)
-importFrom(ggplot2,geom_hline)
-importFrom(ggplot2,geom_point)
-importFrom(ggplot2,geom_smooth)
-importFrom(ggplot2,ggplot)
-importFrom(ggplot2,ggtitle)
-importFrom(ggplot2,guide_legend)
-importFrom(ggplot2,position_dodge)
-importFrom(ggplot2,scale_linetype_manual)
-importFrom(ggplot2,stat_summary)
-importFrom(ggplot2,theme)
-importFrom(ggplot2,theme_bw)
-importFrom(ggplot2,theme_classic)
-importFrom(ggplot2,xlab)
-importFrom(ggplot2,ylab)
-importFrom(graphics,plot)
-importFrom(graphics,points)
-importFrom(graphics,segments)
+importFrom(DT,
+  datatable,
+  renderDataTable
+)
+importFrom(caret,
+  train,
+  trainControl
+)
+importFrom(dplyr,
+  across,
+  arrange,
+  bind_rows,
+  mutate,
+  select
+)
+importFrom(ggplot2,
+  aes,
+  element_text,
+  geom_col,
+  geom_hline,
+  geom_point,
+  geom_smooth,
+  ggplot,
+  ggtitle,
+  guide_legend,
+  position_dodge,
+  scale_linetype_manual,
+  stat_summary,
+  theme,
+  theme_bw,
+  theme_classic,
+  xlab,
+  ylab
+)
+importFrom(graphics,
+  plot,
+  points,
+  segments
+)
 importFrom(htmltools,tagList)
-importFrom(imager,height)
-importFrom(imager,load.image)
-importFrom(imager,width)
+importFrom(imager,
+  height,
+  load.image,
+  width
+)
 importFrom(performance,check_model)
-importFrom(readxl,read_excel)
-importFrom(readxl,read_xlsx)
-importFrom(shiny,actionButton)
-importFrom(shiny,modalButton)
-importFrom(shiny,modalDialog)
-importFrom(shiny,observeEvent)
-importFrom(shiny,reactiveFileReader)
-importFrom(shiny,reactiveVal)
-importFrom(shiny,reactiveValues)
-importFrom(shiny,removeModal)
-importFrom(shiny,renderPlot)
-importFrom(shiny,req)
-importFrom(shiny,runApp)
-importFrom(shiny,showModal)
-importFrom(shiny,stopApp)
-importFrom(shiny,textInput)
-importFrom(shiny,updateNumericInput)
-importFrom(shiny,updateRadioButtons)
-importFrom(shiny,updateTextInput)
+importFrom(readxl,
+  read_excel,
+  read_xlsx
+)
+importFrom(shiny,
+  actionButton,
+  modalButton,
+  modalDialog,
+  observeEvent,
+  reactiveFileReader,
+  reactiveVal,
+  reactiveValues,
+  removeModal,
+  renderPlot,
+  req,
+  runApp,
+  showModal,
+  stopApp,
+  textInput,
+  updateNumericInput,
+  updateRadioButtons,
+  updateTextInput
+)
 importFrom(shinycssloaders,showSpinner)
-importFrom(stats,lm)
-importFrom(stats,na.omit)
-importFrom(stats,predict)
+importFrom(stats,
+  lm,
+  na.omit,
+  predict
+)
 importFrom(tidyr,gather)
 importFrom(writexl,write_xlsx)

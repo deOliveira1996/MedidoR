@@ -31,7 +31,6 @@ Imports:
     tidyr,
     tidyverse,
     ggplot2
-RoxygenNote: 7.3.3
 VignetteBuilder: knitr
 Suggests: 
     knitr,
@@ -40,3 +39,4 @@ Suggests:
     shinytest2
 Config/testthat/edition: 3
 Roxygen: list(markdown = TRUE)
+Config/roxygen2/version: 8.1.0
